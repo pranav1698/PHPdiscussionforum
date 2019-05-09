@@ -22,12 +22,13 @@ $result = mysqli_query($conn, $topics_query);
 			<?php 
 				while ($topic_info = mysqli_fetch_array($result)) {
 					$topic_id = $topic_info['topic_id'];
+					$topic_title = $topic_info['topic_title'];
 					$query = "SELECT * FROM `forum_posts` where topic_id=$topic_id";
 					$sql = mysqli_query($conn, $query);
 			?>
 				<tr>
 					<td>
-						<a href="./show_topic.php?topic_id=<?php echo $topic_id ?>"><strong><?php echo $topic_info['topic_title']?></strong></a><br>
+						<a href="./show_topic.php?topic_id=<?php echo $topic_id ?>&topic_title=<?php echo $topic_title ?>"><strong><?php echo $topic_title ?></strong></a><br>
 						Created by <strong><?php echo $topic_info['topic_owner'] ?></strong> on <strong><?php echo $topic_info['topic_create_time'] ?></strong>
 					</td>
 					<td align="center" style="padding: 20px"><?php echo mysqli_num_rows($sql) ?></td>
